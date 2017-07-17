@@ -27,8 +27,8 @@
     "LICENSE",
     "README.md"
   ],
-  "main": "dist/src/index.js",
-  "typings": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
   "engineStrict": true,
   "engines": {
     "node": ">= 6.9.0"
@@ -37,8 +37,8 @@
     "clean": "rimraf coverage build tmp",
     "build": "tsc -p tsconfig.release.json",
     "watch": "tsc -w -p tsconfig.release.json",
-    "lint": "tslint -t stylish '{src,__tests__}/**/*.{ts,tsx}'",
-    "test": "npm run test-only",
+    "lint": "tslint -t stylish '{src}/**/*.{ts,tsx}'",
+    "test": "tsc && npm run test-only",
     "test-only": "jest --coverage",
     "test:watch": "jest --watch"
   },
@@ -53,22 +53,23 @@
       "js",
       "jsx"
     ],
-    "testRegex": "<rootDir>(__tests__/).*\\.(test|spec)\\.(ts|js)$",
+    "testRegex": "<rootDir>(src/tests/).*\\.(test|spec)\\.(ts|js)$",
     "coverageDirectory": "coverage",
     "collectCoverageFrom": [
       "src/**/*.{ts,tsx,js,jsx}",
-      "!src/**/*.d.ts"
+      "!src/**/*.d.ts",
+      "!src/tests/**/*.*"
     ]
   },
   "devDependencies": {
     "@types/jest": "~19.2.2",
-    "normalizr": "^3.2.2",
     "@types/node": "~6.0.70",
     "jest": "~19.0.2",
+    "normalizr": "^3.2.2",
     "rimraf": "~2.6.1",
     "tslint": "~4.5.1",
     "tslint-microsoft-contrib": "~4.0.0",
-    "typescript": "~2.2.2"
+    "typescript": "~2.3.4"
   },
   "dependencies": {
     "reflect-metadata": "^0.1.10",
