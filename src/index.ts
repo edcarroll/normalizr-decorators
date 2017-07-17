@@ -56,8 +56,10 @@ const arrayPropertyDecorator: ArrayPropertyDecorator = (elementTarget: any) => {
   };
 };
 
-const define: DefineTargetSignature = (target: any): normalizr.Schema => {
-  const {schema}: SchemaTarget = Reflect.getMetadata(REFLECT_METADATA_SCHEMA, target);
+const define: DefineTargetSignature = (target: any | [any]): normalizr.Schema => {
+  const isArray = target instanceof Array;
+  const unwrapped = isArray ? target[0] : target;
+  const {schema}: SchemaTarget = Reflect.getMetadata(REFLECT_METADATA_SCHEMA, unwrapped);
 
   const entityProperties: (string | symbol)[] = Reflect.getMetadata(REFLECT_METADATA_SCHEMA_ENTITY_PROPERTIES, target) || [];
   entityProperties.forEach((propertyKey: string | symbol) => defineEntityProperties(schema, target, propertyKey));
@@ -65,7 +67,7 @@ const define: DefineTargetSignature = (target: any): normalizr.Schema => {
   const arrayProperties: (string | symbol)[] = Reflect.getMetadata(REFLECT_METADATA_SCHEMA_ARRAY_PROPERTIES, target) || [];
   arrayProperties.forEach((propertyKey: string | symbol) => defineArrayProperties(schema, target, propertyKey));
 
-  return schema;
+  return isArray ? new normalizr.schema.Array(schema) : schema;
 };
 
 const defineEntityProperties: DefineTargetPropertySignature =
