@@ -1,6 +1,6 @@
 {
-  "name": "normalizr-decorators",
-  "version": "1.0.0-alpha.1",
+  "name": "@edcarroll/normalizr-decorators",
+  "version": "1.0.0-alpha.2",
   "description": "Schema decorators for normalizr",
   "author": "Michael Wolbert <michael.wolbert@gmail.com>",
   "bugs": {
@@ -28,7 +28,7 @@
     "README.md"
   ],
   "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
+  "types": "dist/index.d.ts",
   "engineStrict": true,
   "engines": {
     "node": ">= 6.9.0"
