@@ -84,12 +84,19 @@ const defineArrayProperties: DefineTargetPropertySignature =
     define(target);
 };
 
-export const Entity: EntityClassDecorator = (params: EntityParams): ClassDecorator => entityClassDecorator(params);
-export const EntityProperty: EntityPropertyDecorator = (): PropertyDecorator => entityPropertyDecorator();
-export const ArrayProperty: ArrayPropertyDecorator = (elementTarget: any): PropertyDecorator => arrayPropertyDecorator(elementTarget);
+export function Entity(params: EntityParams):ClassDecorator {
+  return entityClassDecorator(params);
+}
+export function EntityProperty():PropertyDecorator {
+  return entityPropertyDecorator();
+}
+export function ArrayProperty(elementTarget: any):PropertyDecorator {
+  return arrayPropertyDecorator(elementTarget);
+}
 
-export const normalize: NormalizeSignature = (data: any, target: any): {entities: any, result: any} =>
-  normalizr.normalize(data, define(target));
-
-export const denormalize: DenormalizeSignature = (input: any, target: any, entities: any): any =>
-  normalizr.denormalize(input, define(target), entities);
+export function normalize(data: any, target: any): {entities: any, result: any} {
+  return normalizr.normalize(data, define(target));
+}
+export function denormalize(input: any, target: any, entities: any): any {
+  return normalizr.denormalize(input, define(target), entities);
+}
