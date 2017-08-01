@@ -61,11 +61,11 @@ const define: DefineTargetSignature = (target: any | [any]): normalizr.Schema =>
   const unwrapped = isArray ? target[0] : target;
   const {schema}: SchemaTarget = Reflect.getMetadata(REFLECT_METADATA_SCHEMA, unwrapped);
 
-  const entityProperties: (string | symbol)[] = Reflect.getMetadata(REFLECT_METADATA_SCHEMA_ENTITY_PROPERTIES, target) || [];
-  entityProperties.forEach((propertyKey: string | symbol) => defineEntityProperties(schema, target, propertyKey));
+  const entityProperties: (string | symbol)[] = Reflect.getMetadata(REFLECT_METADATA_SCHEMA_ENTITY_PROPERTIES, unwrapped) || [];
+  entityProperties.forEach((propertyKey: string | symbol) => defineEntityProperties(schema, unwrapped, propertyKey));
 
-  const arrayProperties: (string | symbol)[] = Reflect.getMetadata(REFLECT_METADATA_SCHEMA_ARRAY_PROPERTIES, target) || [];
-  arrayProperties.forEach((propertyKey: string | symbol) => defineArrayProperties(schema, target, propertyKey));
+  const arrayProperties: (string | symbol)[] = Reflect.getMetadata(REFLECT_METADATA_SCHEMA_ARRAY_PROPERTIES, unwrapped) || [];
+  arrayProperties.forEach((propertyKey: string | symbol) => defineArrayProperties(schema, unwrapped, propertyKey));
 
   return isArray ? new normalizr.schema.Array(schema) : schema;
 };
