@@ -19,7 +19,7 @@ export type EntityClassDecorator = (params: EntityParams) => ClassDecorator;
 export type EntityPropertyDecorator = () => PropertyDecorator;
 export type ArrayPropertyDecorator = (elementTarget: any) => PropertyDecorator;
 
-type DefineTargetSignature = (target: any) => normalizr.Schema;
+export type DefineTargetSignature = (target: any) => normalizr.Schema;
 type DefineTargetPropertySignature = (parentSchema: any, parentTarget: any, propertyKey: string | symbol) => void;
 
 export type NormalizeSignature = (data: any, target: any) => {entities: any, result: any};
@@ -56,7 +56,7 @@ const arrayPropertyDecorator: ArrayPropertyDecorator = (elementTarget: any) => {
   };
 };
 
-const define: DefineTargetSignature = (target: any | [any]): normalizr.Schema => {
+export const define: DefineTargetSignature = (target: any | [any]): normalizr.Schema => {
   const isArray = target instanceof Array;
   const unwrapped = isArray ? target[0] : target;
   const {schema}: SchemaTarget = Reflect.getMetadata(REFLECT_METADATA_SCHEMA, unwrapped);
