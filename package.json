@@ -1,8 +1,14 @@
 {
-  "name": "@edcarroll/normalizr-decorators",
+  "name": "normalizr-decorators",
   "version": "1.0.0-alpha.5",
   "description": "Schema decorators for normalizr",
-  "author": "Michael Wolbert <michael.wolbert@gmail.com>",
+  "author": {
+    "name": "Michael Wolbert", 
+    "email": "michael.wolbert@gmail.com>"
+  },
+  "contributors": [
+    "name": "Edward Carroll"
+  ],
   "bugs": {
     "url": "https://github.com/mchlbrnd/normalizr-decorators/issues"
   },
