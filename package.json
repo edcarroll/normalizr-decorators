@@ -6,9 +6,9 @@
     "name": "Michael Wolbert", 
     "email": "michael.wolbert@gmail.com>"
   },
-  "contributors": [
+  "contributors": [{
     "name": "Edward Carroll"
-  ],
+  }],
   "bugs": {
     "url": "https://github.com/mchlbrnd/normalizr-decorators/issues"
   },
